@@ -5,14 +5,14 @@
  Source Server Type    : PostgreSQL
  Source Server Version : 120001
  Source Host           : hadoop104:5432
- Source Catalog        : db2021
+ Source Catalog        : db01
  Source Schema         : public
 
  Target Server Type    : PostgreSQL
  Target Server Version : 120001
  File Encoding         : 65001
 
- Date: 13/09/2021 20:32:32
+ Date: 16/09/2021 18:36:40
 */
 
 
