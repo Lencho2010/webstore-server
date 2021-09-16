@@ -1,7 +1,0 @@
-server:
-  port: 8082
-
-rocketmq:
-  name-server: hadoop104:9876
-  producer:
-    group: my-producer-group
