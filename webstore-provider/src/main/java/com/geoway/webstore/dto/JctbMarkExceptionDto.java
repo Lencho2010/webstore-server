@@ -1,5 +1,7 @@
 package com.geoway.webstore.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class JctbMarkExceptionDto {
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     private Integer index;

@@ -86,6 +86,11 @@ public class JctbMarkExceptionServiceImpl implements JctbMarkExceptionService {
     }
 
     @Override
+    public int batchUpdate(List<JctbMarkException> records) {
+        return records.stream().mapToInt(r -> this.jctbMarkExceptionDao.update(r)).sum();
+    }
+
+    @Override
     public int batchInsert(List<JctbMarkException> records) {
         records.forEach(r -> r.setId(idWorker.nextId()));
         return jctbMarkExceptionDao.batchInsert(records);

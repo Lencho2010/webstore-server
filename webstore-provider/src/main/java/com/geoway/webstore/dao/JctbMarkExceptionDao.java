@@ -65,6 +65,8 @@ public interface JctbMarkExceptionDao {
      */
     int deleteById(Long id);
 
+    //int batchUpdate(@Param("records") List<JctbMarkException> records);
+
     int batchInsert(@Param("records") List<JctbMarkException> records);
 
     int deleteByTaskName(String taskName);

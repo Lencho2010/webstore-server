@@ -1,9 +1,7 @@
 package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
-import com.geoway.webstore.dto.JctbContrastDetailDto;
 import com.geoway.webstore.dto.JctbMarkExceptionDto;
-import com.geoway.webstore.entities.JctbContrastDetail;
 import com.geoway.webstore.entity.JctbMarkException;
 import com.geoway.webstore.service.JctbMarkExceptionService;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +39,11 @@ public class JctbMarkExceptionController {
     @PutMapping
     public JctbMarkException update(@RequestBody JctbMarkException record) {
         return this.jctbMarkExceptionService.update(record);
+    }
+
+    @PutMapping("/batch")
+    public int batchUpdate(@RequestBody List<JctbMarkException> records) {
+        return this.jctbMarkExceptionService.batchUpdate(records);
     }
 
     public boolean deleteById(Long id) {

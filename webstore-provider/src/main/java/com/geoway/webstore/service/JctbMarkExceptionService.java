@@ -55,6 +55,8 @@ public interface JctbMarkExceptionService {
      */
     boolean deleteById(Long id);
 
+    int batchUpdate(List<JctbMarkException> jctbMarkExceptions);
+
     int batchInsert(@Param("records") List<JctbMarkException> records);
 
     int deleteByTaskName(String taskName);
