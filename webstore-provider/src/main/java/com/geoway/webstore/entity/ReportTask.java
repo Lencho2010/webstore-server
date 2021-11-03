@@ -1,6 +1,8 @@
 package com.geoway.webstore.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.geoway.webstore.constant.Constant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +22,8 @@ import java.io.Serializable;
 @Builder
 public class ReportTask implements Serializable {
     private static final long serialVersionUID = 245005481044580606L;
-    
+
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     
     private String name;

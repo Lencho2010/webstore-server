@@ -84,6 +84,16 @@ public class ReportTaskServiceImpl implements ReportTaskService {
         return this.queryById(reportTask.getId());
     }
 
+    @Override
+    public ReportTask processExportTask(ReportTask reportTask) {
+        ReportTask task = this.queryById(reportTask.getId());
+        task.setStatus(2);
+        task.setStartTime(new Date());
+        this.reportTaskDao.update(task);
+        return this.queryById(task.getId());
+    }
+
+
     /**
      * 通过主键删除数据
      *

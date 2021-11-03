@@ -54,8 +54,14 @@ public class ReportTaskController {
     }
 
     @PutMapping
-    public ReportTask update(@RequestBody ReportTask record){
+    public ReportTask update(@RequestBody ReportTask record) {
         return reportTaskService.update(record);
+    }
+
+    //执行导出任务
+    @PutMapping("/processExportTask")
+    public ReportTask processExportTask(@RequestBody ReportTask record) {
+        return reportTaskService.processExportTask(record);
     }
 
     @GetMapping(value = {"/list/{page}/{rows}"})
@@ -67,7 +73,7 @@ public class ReportTaskController {
     }
 
     @GetMapping("listChargePerson")
-    public List<String> listChargePerson(){
+    public List<String> listChargePerson() {
         return reportTaskService.listChargePerson();
     }
 

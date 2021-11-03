@@ -46,6 +46,8 @@ public interface ReportTaskService {
      */
     ReportTask update(ReportTask reportTask);
 
+    ReportTask processExportTask(ReportTask reportTask);
+
     /**
      * 通过主键删除数据
      *

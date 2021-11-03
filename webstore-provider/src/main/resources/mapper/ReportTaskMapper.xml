@@ -116,7 +116,7 @@
                 charge_person = #{chargePerson},
             </if>
             <if test="desc != null and desc != ''">
-                desc = #{desc},
+                desc_str = #{desc},
             </if>
             <if test="statisticType != null and statisticType != ''">
                 statistic_type = #{statisticType},
