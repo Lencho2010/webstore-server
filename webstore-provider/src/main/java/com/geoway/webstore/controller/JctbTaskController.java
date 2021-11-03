@@ -3,6 +3,7 @@ package com.geoway.webstore.controller;
 import com.geoway.webstore.anno.ResponseResult;
 import com.geoway.webstore.entities.JctbTask;
 import com.geoway.webstore.service.JctbTaskService;
+import com.geoway.webstore.util.ExportWordUtil;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -78,5 +79,11 @@ public class JctbTaskController {
     @PutMapping
     public int updateByPrimaryKey(@RequestBody JctbTask record) {
         return jctbTaskService.updateByPrimaryKey(record);
+    }
+
+    @GetMapping("/testExportWord")
+    public int testExportWord() {
+        ExportWordUtil.test();
+        return 1;
     }
 }
