@@ -38,12 +38,20 @@ public class JctbTaskController {
         return jctbTaskService.selectByTaskName(taskName);
     }
 
+    @GetMapping(value = {"/listByFilter"})
+    public List<JctbTask> listByFilter(@RequestParam("fromDate") String fromDate,
+                                       @RequestParam("toDate") String toDate,
+                                       @RequestParam(value = "taskName", required = false) String taskName,
+                                       @RequestParam(value = "status", required = false) List<Integer> status) {
+        return jctbTaskService.listByFilter(fromDate, toDate, taskName, status);
+    }
+
     @ApiOperation(value = "分页查询任务列表", notes = "分页查询任务列表")
     @GetMapping(value = {"/list/{page}/{rows}"})
     public PageInfo list(@PathVariable("page") int page,
-                                 @PathVariable("rows") int rows,
-                                 @RequestParam(value = "taskName", required = false) String taskName,
-                                 @RequestParam(value = "status", required = false) List<Integer> status) {
+                         @PathVariable("rows") int rows,
+                         @RequestParam(value = "taskName", required = false) String taskName,
+                         @RequestParam(value = "status", required = false) List<Integer> status) {
         return jctbTaskService.listByTaskNameAndStatus(page, rows, taskName, status);
     }
 

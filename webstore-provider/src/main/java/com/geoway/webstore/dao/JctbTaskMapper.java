@@ -20,6 +20,8 @@ public interface JctbTaskMapper {
 
     List<JctbTask> listByStatus(@Param("status") List<Integer> status);
 
+    List<JctbTask> listByFilter(@Param("fromDate") String fromDate, @Param("toDate") String toDate, @Param("taskName") String taskName, @Param("status") List<Integer> status);
+
     int updateByPrimaryKeySelective(JctbTask record);
 
     int updateProgressByTaskName(JctbTask record);

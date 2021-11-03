@@ -23,6 +23,8 @@ public interface JctbTaskService {
 
     List<JctbTask> listByStatus(List<Integer> status);
 
+    List<JctbTask> listByFilter(String fromDate, String toDate, String taskName, List<Integer> status);
+
     int updateProgressByTaskName(JctbTask record);
 
     int updateStatusByTaskName(JctbTask record);

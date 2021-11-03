@@ -47,7 +47,7 @@ public class JctbTaskServiceImpl implements JctbTaskService {
         List taskList = pageInfo.getList();
         List<JctbTaskDto> dtoList = JctbTaskConverter.Instance.domain2dto(taskList);
         IntStream.range(0, dtoList.size()).forEach(i -> {
-            JctbTaskDto dto = dtoList.get(i);
+                    JctbTaskDto dto = dtoList.get(i);
                     dto.setIndex((page - 1) * rows + 1 + i);
                 }
         );
@@ -58,6 +58,11 @@ public class JctbTaskServiceImpl implements JctbTaskService {
     @Override
     public List<JctbTask> listByStatus(List<Integer> status) {
         return jctbTaskMapper.listByStatus(status);
+    }
+
+    @Override
+    public List<JctbTask> listByFilter(String fromDate, String toDate, String taskName, List<Integer> status) {
+        return jctbTaskMapper.listByFilter(fromDate, toDate, taskName, status);
     }
 
     @Override

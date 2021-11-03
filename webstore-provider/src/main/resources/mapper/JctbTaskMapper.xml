@@ -164,4 +164,21 @@
     </if>
     order by task_name asc
   </select>
+
+  <select id="listByFilter" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from jctb_task
+    where start_time between '${fromDate}' and '${toDate}'
+    <if test="status != null and status.size() > 0">
+      and status in (
+      <foreach collection="status" item="item" separator=",">
+        #{item,jdbcType=NUMERIC}
+      </foreach>)
+    </if>
+    <if test="taskName != null and taskName != ''">
+      and task_name like '%${taskName}%'
+    </if>
+    order by start_time desc
+  </select>
 </mapper>
