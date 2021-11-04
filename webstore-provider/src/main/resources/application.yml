@@ -129,3 +129,5 @@ sys-para:
   scanPathKey: eefc68d6-50d0-46ee-ae60-f7556941e92c
   scanPathsKey: a10519d2-85f3-4b06-b38a-2df9c6462623
   serviceStatusKey: add77e71-6603-4dd7-9ff9-6e2a947c398e
+
+template-loader-path: classpath:templates

@@ -5,7 +5,9 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.Version;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.util.StringUtils;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import sun.misc.BASE64Encoder;
 
 import java.io.*;
@@ -20,7 +22,8 @@ import java.util.Map;
 public class ExportWordUtil {
     public static void exportWord(Map dataMap, String templatePath, String templateName, String outFilePath, String outFilename) throws IOException, TemplateException {
         //第一步：创建一个Configuration对象，直接new一个对象。构造方法的参数就是freemarker对于的版本号。
-        Configuration configuration = new Configuration();
+        Configuration configuration = new Configuration(Configuration.getVersion());
+        //FreeMarkerConfigurer configuration = new FreeMarkerConfigurer();
         // 第二步：设置模板文件所在的路径。
         configuration.setDirectoryForTemplateLoading(new File(templatePath));
         //第三步：设置模板文件使用的字符集。一般就是utf-8.
@@ -32,6 +35,7 @@ public class ExportWordUtil {
         FileOutputStream fileOutputStream = new FileOutputStream(new File(outFilePath + File.separator + outFilename));
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF-8");
         Writer outWriter = new BufferedWriter(outputStreamWriter);
+        // Writer outWriter = new FileWriter(new File(outFilePath + File.separator + outFilename));
 
         try {
             template.process(dataMap, outWriter);
@@ -105,17 +109,34 @@ public class ExportWordUtil {
     }
 
     public static void test() {
-        Map<String, String> dataMap = new HashMap<String, String>();
+        Map<String, String> dataMap = new HashMap<>();
         dataMap.put("name", "朵朵");
         dataMap.put("age", "2");
         try {
-            ClassPathResource classPathResource = new ClassPathResource("templates");
+            Resource classPathResource = new ClassPathResource("templates");
             String path = classPathResource.getFile().getPath();
             File workDirFile = new File("D://test");
-            if(!workDirFile.exists()) {
+            if (!workDirFile.exists()) {
                 workDirFile.mkdirs();
             }
-            ExportWordUtil.exportWord(dataMap, path,"test.xml","D://test","test.docx");
+            ExportWordUtil.exportWord(dataMap, path, "test.xml", "D://test", "test.docx");
+        } catch (IOException | TemplateException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void test2() {
+        Configuration cfg = new Configuration(Configuration.getVersion());
+        try {
+            cfg.setDirectoryForTemplateLoading(new File("E:/ftl"));
+            Template template = cfg.getTemplate("hello.ftl");
+            Map<String, String> map = new HashMap<>();
+            map.put("hello", "Hello FreeMarker!");
+
+            StringWriter stringWriter = new StringWriter();
+            template.process(map, stringWriter);
+            String resultStr = stringWriter.toString();
+            System.out.println(resultStr);
         } catch (IOException | TemplateException e) {
             e.printStackTrace();
         }

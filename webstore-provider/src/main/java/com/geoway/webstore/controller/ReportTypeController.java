@@ -3,9 +3,15 @@ package com.geoway.webstore.controller;
 import com.geoway.webstore.anno.ResponseResult;
 import com.geoway.webstore.entity.ReportType;
 import com.geoway.webstore.service.ReportTypeService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -39,4 +45,5 @@ public class ReportTypeController {
     public List<ReportType> list() {
         return reportTypeService.queryAll();
     }
+
 }
