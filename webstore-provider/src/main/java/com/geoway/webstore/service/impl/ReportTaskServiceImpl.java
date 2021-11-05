@@ -1,21 +1,35 @@
 package com.geoway.webstore.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.geoway.webstore.converter.JctbTaskConverter;
 import com.geoway.webstore.dto.JctbTaskDto;
 import com.geoway.webstore.entities.JctbTask;
-import com.geoway.webstore.entity.ReportTask;
+import com.geoway.webstore.entity.*;
 import com.geoway.webstore.dao.ReportTaskDao;
 import com.geoway.webstore.service.ReportTaskService;
-import com.geoway.webstore.util.IDWorker;
+import com.geoway.webstore.service.ReportTemplateService;
+import com.geoway.webstore.service.ReportTypeService;
+import com.geoway.webstore.util.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import freemarker.template.TemplateException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * (ReportTask)表服务实现类
@@ -31,6 +45,21 @@ public class ReportTaskServiceImpl implements ReportTaskService {
 
     @Resource
     private ReportTaskDao reportTaskDao;
+
+    @Resource
+    private ThreadPoolTaskExecutor executor;
+
+    @Resource
+    private ReportTemplateService reportTemplateService;
+
+    @Resource
+    private JdbcTemplate jdbcTemplate;
+
+    @Resource
+    private ReportTypeService reportTypeService;
+
+    @Value("${report-export-path}")
+    private String reportExportPath;
 
     /**
      * 通过ID查询单条数据
@@ -66,7 +95,7 @@ public class ReportTaskServiceImpl implements ReportTaskService {
         reportTask.setId(idWorker.nextId());
         reportTask.setCreateTime(new Date());
         if (reportTask.getStatus().equals(2)) {
-            reportTask.setStartTime(new Date());
+            this.processExportTask(reportTask);
         }
         this.reportTaskDao.insert(reportTask);
         return reportTask;
@@ -83,16 +112,6 @@ public class ReportTaskServiceImpl implements ReportTaskService {
         this.reportTaskDao.update(reportTask);
         return this.queryById(reportTask.getId());
     }
-
-    @Override
-    public ReportTask processExportTask(ReportTask reportTask) {
-        ReportTask task = this.queryById(reportTask.getId());
-        task.setStatus(2);
-        task.setStartTime(new Date());
-        this.reportTaskDao.update(task);
-        return this.queryById(task.getId());
-    }
-
 
     /**
      * 通过主键删除数据
@@ -119,5 +138,125 @@ public class ReportTaskServiceImpl implements ReportTaskService {
         return this.reportTaskDao.listChargePerson();
     }
 
+    @Override
+    public ReportTask processExportTask(ReportTask reportTask) {
+        ReportTask task = this.queryById(reportTask.getId());
+        task.setStatus(2);
+        task.setStartTime(new Date());
+        this.reportTaskDao.update(task);
 
+        //开始处理导出任务
+        executor.execute(() -> doExecuteExportTask(task));
+        return this.queryById(task.getId());
+    }
+
+    /**
+     * 处理导出任务
+     *
+     * @param task
+     */
+    private void doExecuteExportTask(ReportTask task) {
+        try {
+            List<String> codeList = Arrays.asList(task.getExportDocs().split(","));
+            List<ReportTemplate> reportTemplates = reportTemplateService.listByCodes(codeList);
+            List<ReportTemplate> wordDocs = reportTemplates.stream().filter(t -> t.getDocType().equals("word")).collect(Collectors.toList());
+            List<ReportTemplate> excelDocs = reportTemplates.stream().filter(t -> t.getDocType().equals("excel")).collect(Collectors.toList());
+
+            doExecuteWord(task, wordDocs);
+            task.setStatus(1);
+            task.setEndTime(new Date());
+            this.reportTaskDao.update(task);
+        } catch (Exception ex) {
+            task.setStatus(-1);
+            task.setEndTime(new Date());
+            this.reportTaskDao.update(task);
+        }
+    }
+
+    /**
+     * 导出word文档
+     *
+     * @param wordDocs
+     */
+    private void doExecuteWord(ReportTask task, List<ReportTemplate> wordDocs) {
+        Map<String, Object> dataMap = new HashMap<>();
+        String taskNames = task.getTaskNames();
+        dataMap.put("taskNames", taskNames);
+
+        wordDocs.forEach(item -> {
+            String xmlText = readFileToString(item.getUrl());
+            JSONObject json = XmlUtil.xml2Json(xmlText);
+            ExportWordConfigDetail configDetail = json.toJavaObject(ExportWordConfigDetail.class);
+            transportSql(configDetail, dataMap);
+            Map<String, Object> resultMap = processSql(configDetail);
+            String outFileName = transportFileName(item.getName(), task.getFromDate(), task.getToDate());
+            ReportType reportType = reportTypeService.queryAll().stream().filter(t -> t.getType().equals(task.getStatisticType())).findAny().get();
+            String outFilePath = reportExportPath + File.separator + reportType.getName();
+            File workDirFile = new File(outFilePath);
+            if (!workDirFile.exists()) workDirFile.mkdirs();
+            processWordTemplate(configDetail, resultMap, outFileName, outFilePath);
+        });
+    }
+
+    //文件:关于2021年卫片执法下发数据情况的报告.docx -> 关于2021年卫片执法下发数据情况的报告(08月07日至11月05日).docx
+    private String transportFileName(String fileName, Date fromDate, Date toDate) {
+        String outFileName = fileName;
+        String fileNameNoEx = FileUtil.getFileNameNoEx(outFileName);
+        String extensionName = FileUtil.getExtensionName(outFileName);
+        DateFormat dateFormat = new SimpleDateFormat("MM月dd日");
+        outFileName = String.format("%s(%s至%s).%s", fileNameNoEx, dateFormat.format(fromDate), dateFormat.format(toDate), extensionName);
+        return outFileName;
+    }
+
+    private String readFileToString(String xmlPath) {
+        File xmlFile = new File(xmlPath);
+        if (!xmlFile.exists()) {
+            return "";
+        }
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(xmlFile));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line = "";
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+            bufferedReader.close();
+            return stringBuilder.toString();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            return "";
+        }
+    }
+
+    private void transportSql(ExportWordConfigDetail configDetail, Map<String, Object> dataMap) {
+        TransportTemplate template = new TransportTemplate();
+
+        configDetail.getSqlItem().forEach(item -> {
+            template.setTemplate(item.getSql());
+            template.setTemplateMap(dataMap);
+            String transformSql = Transport.transform(template);
+            item.setSql(transformSql);
+        });
+    }
+
+    private Map<String, Object> processSql(ExportWordConfigDetail configDetail) {
+        Map<String, Object> resultMap = new HashMap<>();
+        configDetail.getSqlItem().forEach(item -> {
+            String sql = item.getSql();
+            Map<String, Object> map = jdbcTemplate.queryForMap(sql);
+            resultMap.put(item.getKey(), map);
+        });
+        return resultMap;
+    }
+
+    private void processWordTemplate(ExportWordConfigDetail configDetail, Map<String, Object> dataMap, String outFileName, String outFilePath) {
+        File templateFile = new File(configDetail.getDocPath());
+        String templatePath = templateFile.getParentFile().getAbsolutePath();// templateFile.getAbsolutePath();
+        String templateName = templateFile.getName();
+        try {
+            ExportWordUtil.exportWord(dataMap, templatePath, templateName, outFilePath, outFileName);
+        } catch (IOException | TemplateException e) {
+            e.printStackTrace();
+        }
+    }
 }

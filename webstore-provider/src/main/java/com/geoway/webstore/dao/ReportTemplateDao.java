@@ -35,6 +35,8 @@ public interface ReportTemplateDao {
 
     List<ReportTemplate> listByType(@Param("statisticType") String statisticType);
 
+    List<ReportTemplate> listByCodes(@Param("codes") List<String> codes);
+
     /**
      * 通过实体作为筛选条件查询
      *

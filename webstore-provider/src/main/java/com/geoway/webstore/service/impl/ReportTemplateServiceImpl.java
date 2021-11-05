@@ -34,7 +34,7 @@ public class ReportTemplateServiceImpl implements ReportTemplateService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
@@ -45,6 +45,11 @@ public class ReportTemplateServiceImpl implements ReportTemplateService {
     @Override
     public List<ReportTemplate> listByType(String statisticType) {
         return this.reportTemplateDao.listByType(statisticType);
+    }
+
+    @Override
+    public List<ReportTemplate> listByCodes(List<String> codes) {
+        return this.reportTemplateDao.listByCodes(codes);
     }
 
     /**

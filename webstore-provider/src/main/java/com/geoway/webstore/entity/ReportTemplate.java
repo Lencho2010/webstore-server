@@ -2,6 +2,7 @@ package com.geoway.webstore.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2021-11-02 14:17:27
  */
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -36,45 +38,14 @@ public class ReportTemplate implements Serializable {
     */
     private Integer sort;
 
+    /**
+     * 模板对应的路径
+     */
+    private String url;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getStatisticType() {
-        return statisticType;
-    }
-
-    public void setStatisticType(String statisticType) {
-        this.statisticType = statisticType;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
+    /**
+     * 模板类型（word,excel）
+     */
+    private String docType;
 
 }

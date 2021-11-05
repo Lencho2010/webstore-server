@@ -19,7 +19,7 @@ import java.sql.SQLException;
  * @author Lencho
  * @create 2021-08-18 21:43
  */
-@Data
+//@Data
 //@Configuration
 //@ConfigurationProperties(prefix = "master.datasource.druid")
 public class MasterDataSourceConfig {

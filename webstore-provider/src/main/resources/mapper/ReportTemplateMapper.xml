@@ -9,10 +9,12 @@
         <result property="statisticType" column="statistic_type" jdbcType="VARCHAR"/>
         <result property="code" column="code" jdbcType="VARCHAR"/>
         <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="url" column="url" jdbcType="VARBINARY"/>
+        <result property="docType" column="doc_type" jdbcType="VARBINARY"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, name, statistic_type, code, sort
+        id, name, statistic_type, code, sort, url, doc_type
     </sql>
 
     <!--查询单个-->
@@ -52,6 +54,12 @@
             <if test="sort != null">
                 and sort = #{sort}
             </if>
+            <if test="url != null and url != ''">
+                and url = #{url}
+            </if>
+            <if test="docType != null and docType != ''">
+                and doc_type = #{docType}
+            </if>
         </where>
     </select>
 
@@ -62,6 +70,21 @@
         <where>
             <if test="statisticType != null and statisticType != ''">
                 statistic_type = #{statisticType}
+            </if>
+        </where>
+        order by sort asc
+    </select>
+
+    <select id="listByCodes" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from public.report_template
+        <where>
+            <if test="codes != null and codes.size() > 0">
+                and code in (
+                <foreach collection="codes" item="item" separator=",">
+                    #{item,jdbcType=VARCHAR}
+                </foreach>)
             </if>
         </where>
         order by sort asc
@@ -88,6 +111,12 @@
             </if>
             <if test="sort != null">
                 sort = #{sort},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url},
+            </if>
+            <if test="docType != null and docType != ''">
+                doc_type = #{docType},
             </if>
         </set>
         where id = #{id}

@@ -1,73 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configs>
     <sqlItem>
-        <key>taskinfo</key>
-        <sql>select taskCount ,round(taskCount*100/2882,1)||'%' as bl from ( select count( DISTINCT f_xjxzqhdm) as
-            taskCount from tbhztj_stat_taskdatainfo where f_stat_taskcode='${taskCode}')e
-        </sql>
+        <key>jctbTask</key>
+        <sql>select task_name from table_3</sql>
     </sqlItem>
-    <sqlItem rollno="493">
+    <sqlItem>
         <key>edsddbllb_1</key>
-        <sql>WITH A AS (
-            SELECT f_xzqhdm,bm01
-            FROM
-            tbhztj_sd_edsddbllb_result
-            WHERE
-            f_stat_taskcode = '${taskCode}'
-            AND substr(f_xzqhdm ,5,2)!= '00'
-            and dlh='NC'
-            and ed_sjnf=2017
-            ),
-            b AS (
-            SELECT f_xzqhdm,bm01
-            FROM
-            tbhztj_sd_edsddbllb_result
-            WHERE
-            f_stat_taskcode = '${taskCode}'
-            AND substr(f_xzqhdm ,5,2)!= '00'
-            and dlh='N+'
-            and ed_sjnf=2017
-            ) ,
-            c AS (
-            SELECT f_xzqhdm,bm01
-            FROM
-            tbhztj_sd_edsddbllb_result
-            WHERE
-            f_stat_taskcode = '${taskCode}'
-            AND substr(f_xzqhdm ,5,2)!= '00'
-            and dlh='N-'
-            and ed_sjnf=2017
-            ),
-            d as (SELECT
-            a.f_xzqhdm,a.bm01 as bm01_nc,b.bm01 -c.bm01 as bm01
-            FROM
-            A,b,c where a.f_xzqhdm=b.f_xzqhdm and c.f_xzqhdm=b.f_xzqhdm),
-
-            e as (select round( sum(bm01)/sum(bm01_nc)*100,1) ||'%' as bm01_bl_Z from d where bm01&gt;0),
-            f as (select round( sum(-bm01)/sum(bm01_nc)*100,1) ||'%' as bm01_bl_J from d where bm01&lt;0)
-            select * from e,f
-        </sql>
+        <sql>select * from table_1</sql>
     </sqlItem>
-    <sqlItem rollno="593">
+    <sqlItem>
         <key>yjjbntxztjb</key>
-        <sql>SELECT
-            round(hj / 10000, 2) AS hj,
-            round(gdmj / 10000,2) AS gdmj,
-            round(gdmjbl*100, 1)||'%' AS gdmjbl,
-            round(qtnydmj / 10000,2) AS qtnydmj,
-            round(qtnydmjbl*100, 1)||'%' AS qtnydmjbl,
-            round(ktzdlmj / 10000,2) AS ktzdlmj,
-            round(ktzdlmjbl*100, 1)||'%' AS ktzdlmjbl,
-            round(jkhfqtnydmj / 10000, 2) AS jkhfqtnydmj,
-            round(jkhfqtnydmjbl*100, 1)||'%' AS jkhfqtnydmjbl,
-            round(gchfqtnydmj/10000, 2) AS gchfqtnydmj,
-            round(gchfqtnydmjbl*100, 1)||'%' AS gchfqtnydmjbl,
-            round(qtdlmj/10000, 2) AS qtdlmj,
-            round(qtdlmjbl*100, 1)||'%' AS qtdlmjbl
-            FROM tbhztj_sd_fj2_yjjbntnew_result WHERE f_stat_taskcode = '${taskCode}' AND f_xzqhdm = '${xzqdm}'
-        </sql>
+        <sql>select * from table_2</sql>
     </sqlItem>
-    <inWord>/landstatConfig/model_new.doc</inWord>
+    <docPath>/landstatConfig/model_new.doc</docPath>
     <outPath>\\192.168.102.18\Reports\words</outPath>
-    <xzqmc>${yjflhzb:f_xzqhmc}</xzqmc>
 </configs>

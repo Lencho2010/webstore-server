@@ -16,9 +16,9 @@ import java.sql.SQLException;
  * @CreateTime: 2021/11/4 21:38
  * @Description:
  */
-@Data
-@Configuration
-@ConfigurationProperties(prefix = "master.datasource.druid")
+//@Data
+//@Configuration
+//@ConfigurationProperties(prefix = "second.datasource.druid")
 public class DataSourceConfig {
     private String driverClassName;
     private String url;
@@ -26,7 +26,7 @@ public class DataSourceConfig {
     private String password;
 
     //    @Primary
-    @Bean(name = "masterDataSource")
+    @Bean(name = "secondDataSource")
     public DataSource getMasterDataSource() throws SQLException {
         DruidDataSource druid = new DruidDataSource();
 
@@ -35,12 +35,13 @@ public class DataSourceConfig {
         druid.setUsername(username);
         druid.setPassword(password);
         druid.setUrl(url);
+        druid.setTestWhileIdle(false);
         System.out.println(driverClassName);
         return druid;
     }
 
-    @Bean(name = "masterJdbcTemplate")
-    public JdbcTemplate primaryTemplate(@Qualifier("masterDataSource") DataSource dataSource) {
+    @Bean(name = "secondJdbcTemplate")
+    public JdbcTemplate primaryTemplate(@Qualifier("secondDataSource") DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
 }

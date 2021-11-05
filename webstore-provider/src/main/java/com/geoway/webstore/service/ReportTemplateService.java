@@ -1,6 +1,8 @@
 package com.geoway.webstore.service;
 
 import com.geoway.webstore.entity.ReportTemplate;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -29,6 +31,8 @@ public interface ReportTemplateService {
     List<ReportTemplate> queryAllByLimit(int offset, int limit);
 
     List<ReportTemplate> listByType(String statisticType);
+
+    List<ReportTemplate> listByCodes(List<String> codes);
 
     /**
      * 新增数据

@@ -43,4 +43,9 @@ public class ReportTemplateController {
 
     }
 
+    @GetMapping("/listByCodes/{codes}")
+    public List<ReportTemplate> listByCodes(@PathVariable("codes") List<String> codes) {
+        return reportTemplateService.listByCodes(codes);
+    }
+
 }

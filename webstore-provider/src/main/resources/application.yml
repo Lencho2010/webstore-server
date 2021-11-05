@@ -108,11 +108,16 @@ logging:
 master:
   datasource:
     druid:
-      driverClassName: org.gjt.mm.mysql.Driver
-      #配置基本属性
-      url: jdbc:mysql://hadoop104:3306/db2021?useUnicode=true&characterEncoding=utf-8&useSSL=false
-      username: root
-      password: 123456
+#      driverClassName: org.gjt.mm.mysql.Driver
+#      #配置基本属性
+#      url: jdbc:mysql://hadoop104:3306/db2021?useUnicode=true&characterEncoding=utf-8&useSSL=false
+#      username: root
+#      password: 123456
+
+      url: jdbc:postgresql://hadoop104:5432/db01?useUnicode=true&characterEncoding=utf8
+      driver-class-name: org.postgresql.Driver
+      username: postgres
+      password: root
 
 second:
   datasource:
@@ -123,6 +128,14 @@ second:
       username: root
       password: 123456
 
+# 线程池配置
+threadPool:
+  core-pool-size: 10
+  max-pool-size: 300
+  queue-capacity: 1000
+  keep-alive-seconds: 600
+  threadNamePrefix: my-thread-
+
 #tbsys_syspara表配置项
 sys-para:
   scanIntervalKey: aadea8a9-b7ad-44e2-a7a4-6d37ae432742
@@ -131,3 +144,5 @@ sys-para:
   serviceStatusKey: add77e71-6603-4dd7-9ff9-6e2a947c398e
 
 template-loader-path: classpath:templates
+#\\192.168.102.18\Reports\words
+report-export-path: D://test//report
