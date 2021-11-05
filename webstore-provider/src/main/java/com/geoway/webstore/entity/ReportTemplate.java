@@ -48,4 +48,6 @@ public class ReportTemplate implements Serializable {
      */
     private String docType;
 
+    private String group;
+
 }

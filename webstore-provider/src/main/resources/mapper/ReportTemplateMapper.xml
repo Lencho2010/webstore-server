@@ -11,10 +11,11 @@
         <result property="sort" column="sort" jdbcType="INTEGER"/>
         <result property="url" column="url" jdbcType="VARBINARY"/>
         <result property="docType" column="doc_type" jdbcType="VARBINARY"/>
+        <result property="group" column="group_str" jdbcType="VARBINARY"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, name, statistic_type, code, sort, url, doc_type
+        id, name, statistic_type, code, sort, url, doc_type, group_str
     </sql>
 
     <!--查询单个-->
@@ -59,6 +60,9 @@
             </if>
             <if test="docType != null and docType != ''">
                 and doc_type = #{docType}
+            </if>
+            <if test="group != null and group != ''">
+                and group_str = #{group}
             </if>
         </where>
     </select>
@@ -117,6 +121,9 @@
             </if>
             <if test="docType != null and docType != ''">
                 doc_type = #{docType},
+            </if>
+            <if test="group != null and group != ''">
+                group_str = #{docType},
             </if>
         </set>
         where id = #{id}
