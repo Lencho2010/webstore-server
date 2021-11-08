@@ -207,9 +207,22 @@ public class ReportTaskServiceImpl implements ReportTaskService {
         });
     }
 
+    /**
+     * 统计报告报表导出的路径（reportPath/taskName/reportType/group）
+     */
     private String gainOutDir(ReportTask task, String group) {
         ReportType reportType = reportTypeService.queryAll().stream().filter(t -> t.getType().equals(task.getStatisticType())).findAny().get();
-        String outFilePath = reportExportPath + (StringUtil.isEmpty(group) ? "" : File.separator + group) + File.separator + reportType.getName();
+        String outFilePath = String.format("%s/%s/%s/%s", reportExportPath, task.getName(), reportType.getName(), StringUtil.isEmpty(group) ? "" : group);
+        File workDirFile = new File(outFilePath);
+        if (!workDirFile.exists()) workDirFile.mkdirs();
+        return outFilePath;
+    }
+
+    /**
+     * 统计报告报表导出的路径（reportPath/taskName）
+     */
+    private String gainOutDir(ReportTask task) {
+        String outFilePath = String.format("%s/%s", reportExportPath, task.getName());
         File workDirFile = new File(outFilePath);
         if (!workDirFile.exists()) workDirFile.mkdirs();
         return outFilePath;
