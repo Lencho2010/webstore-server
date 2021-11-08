@@ -31,7 +31,7 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
         HttpServletRequest request = HttpContextUtil.getRequest();
         //判断请求是否有包装标志
         ResponseResult responseResultAnn = (ResponseResult) request.getAttribute(RESPONSE_RESULT_ANN);
-        return responseResultAnn == null ? false : true;
+        return responseResultAnn != null;
     }
 
     @Override
