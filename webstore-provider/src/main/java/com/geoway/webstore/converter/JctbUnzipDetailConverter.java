@@ -1,9 +1,7 @@
 package com.geoway.webstore.converter;
 
-import com.geoway.webstore.dto.JctbTaskDetailDto;
 import com.geoway.webstore.dto.JctbUnzipDetailDto;
-import com.geoway.webstore.entities.JctbTaskDetail;
-import com.geoway.webstore.entities.JctbUnzipDetail;
+import com.geoway.webstore.entity.JctbUnzipDetail;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

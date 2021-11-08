@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.geoway.webstore.dao.JctbTaskMapper">
-  <resultMap id="BaseResultMap" type="com.geoway.webstore.entities.JctbTask">
+  <resultMap id="BaseResultMap" type="com.geoway.webstore.entity.JctbTask">
     <id column="task_name" jdbcType="VARCHAR" property="taskName" />
     <result column="status" jdbcType="SMALLINT" property="status" />
     <result column="progress" jdbcType="SMALLINT" property="progress" />
@@ -23,7 +23,7 @@
     delete from jctb_task
     where task_name = #{taskName,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.geoway.webstore.entities.JctbTask">
+  <insert id="insert" parameterType="com.geoway.webstore.entity.JctbTask">
     insert into jctb_task (task_name, status, progress, 
       start_time, end_time, creator, 
       tb_count)
@@ -31,7 +31,7 @@
       #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
       #{tbCount,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.geoway.webstore.entities.JctbTask">
+  <insert id="insertSelective" parameterType="com.geoway.webstore.entity.JctbTask">
     insert into jctb_task
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="taskName != null">
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.geoway.webstore.entities.JctbTask">
+  <update id="updateByPrimaryKeySelective" parameterType="com.geoway.webstore.entity.JctbTask">
     update jctb_task
     <set>
       <if test="status != null">
@@ -104,7 +104,7 @@
     </set>
     where task_name = #{taskName,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.geoway.webstore.entities.JctbTask">
+  <update id="updateByPrimaryKey" parameterType="com.geoway.webstore.entity.JctbTask">
     update jctb_task
     set status = #{status,jdbcType=SMALLINT},
       progress = #{progress,jdbcType=SMALLINT},
@@ -115,20 +115,20 @@
     where task_name = #{taskName,jdbcType=VARCHAR}
   </update>
 
-  <update id="updateProgressAndStatusByTaskName" parameterType="com.geoway.webstore.entities.JctbTask">
+  <update id="updateProgressAndStatusByTaskName" parameterType="com.geoway.webstore.entity.JctbTask">
     update jctb_task
     set status = #{status,jdbcType=SMALLINT},
         progress = #{progress,jdbcType=SMALLINT}
     where task_name = #{taskName,jdbcType=VARCHAR}
   </update>
 
-  <update id="updateStatusByTaskName" parameterType="com.geoway.webstore.entities.JctbTask">
+  <update id="updateStatusByTaskName" parameterType="com.geoway.webstore.entity.JctbTask">
     update jctb_task
     set status = #{status,jdbcType=SMALLINT}
         where task_name = #{taskName,jdbcType=VARCHAR}
   </update>
 
-  <update id="updateProgressByTaskName" parameterType="com.geoway.webstore.entities.JctbTask">
+  <update id="updateProgressByTaskName" parameterType="com.geoway.webstore.entity.JctbTask">
     update jctb_task
     set progress = #{progress,jdbcType=SMALLINT}
         where task_name = #{taskName,jdbcType=VARCHAR}

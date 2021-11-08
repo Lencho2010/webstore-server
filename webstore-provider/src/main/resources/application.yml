@@ -90,8 +90,8 @@ export:
 
 #mybatis-plus
 mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.geoway.webstore.entities
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.geoway.webstore.entity
   configuration:
     #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     cache-enabled: false

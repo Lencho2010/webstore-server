@@ -1,7 +1,6 @@
 package com.geoway.webstore.dao;
 
-import com.geoway.webstore.entities.JctbTask;
-import com.geoway.webstore.entities.JctbTaskSub;
+import com.geoway.webstore.entity.JctbTaskSub;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

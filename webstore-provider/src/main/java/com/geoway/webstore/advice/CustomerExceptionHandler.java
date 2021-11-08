@@ -1,13 +1,9 @@
 package com.geoway.webstore.advice;
 
-import com.geoway.webstore.comm.Result;
-import com.geoway.webstore.comm.ResultCode;
-import com.geoway.webstore.comm.ResultResponse;
+import com.geoway.webstore.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.util.logging.Logger;
 
 /**
  * @author Lencho
@@ -18,8 +14,8 @@ import java.util.logging.Logger;
 public class CustomerExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public Result Exception(Exception e) {
+    public R Exception(Exception e) {
         log.error("未知异常！", e);
-        return ResultResponse.failure( ResultCode.error(e.getMessage()));
+        return R.error(e.getMessage());
     }
 }

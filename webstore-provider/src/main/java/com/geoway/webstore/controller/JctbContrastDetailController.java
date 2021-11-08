@@ -2,7 +2,7 @@ package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
 import com.geoway.webstore.dto.JctbContrastDetailDto;
-import com.geoway.webstore.entities.JctbContrastDetail;
+import com.geoway.webstore.entity.JctbContrastDetail;
 import com.geoway.webstore.service.JctbContrastDetailService;
 import org.springframework.web.bind.annotation.*;
 

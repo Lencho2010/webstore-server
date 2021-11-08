@@ -1,8 +1,7 @@
 package com.geoway.webstore.service;
 
-import com.geoway.webstore.entities.JctbTask;
+import com.geoway.webstore.entity.JctbTask;
 import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

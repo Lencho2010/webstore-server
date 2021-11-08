@@ -2,9 +2,6 @@ package com.geoway.webstore.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.geoway.webstore.config.DataSourceConfig;
-import com.geoway.webstore.converter.JctbTaskConverter;
-import com.geoway.webstore.dto.JctbTaskDto;
-import com.geoway.webstore.entities.JctbTask;
 import com.geoway.webstore.entity.*;
 import com.geoway.webstore.dao.ReportTaskDao;
 import com.geoway.webstore.response.BaseResponse;
@@ -17,8 +14,6 @@ import com.github.pagehelper.PageInfo;
 import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -30,11 +25,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /**
  * (ReportTask)表服务实现类

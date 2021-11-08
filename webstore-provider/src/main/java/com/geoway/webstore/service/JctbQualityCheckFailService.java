@@ -1,7 +1,7 @@
 package com.geoway.webstore.service;
 
 import com.geoway.webstore.dto.JctbQualityCheckFailDto;
-import com.geoway.webstore.entities.JctbQualityCheckFail;
+import com.geoway.webstore.entity.JctbQualityCheckFail;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.geoway.webstore.service.impl;
 
 import com.geoway.webstore.dao.JctbTaskDetailMapper;
-import com.geoway.webstore.entities.JctbTaskDetail;
+import com.geoway.webstore.entity.JctbTaskDetail;
 import com.geoway.webstore.service.JctbTaskDetailService;
 import com.geoway.webstore.util.IDWorker;
 import org.springframework.stereotype.Service;

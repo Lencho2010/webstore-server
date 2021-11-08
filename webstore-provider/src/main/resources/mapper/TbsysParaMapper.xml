@@ -3,7 +3,7 @@
 
 <mapper namespace="com.geoway.webstore.dao.TbsysParaDao">
 
-    <resultMap id="BaseResultMap" type="com.geoway.webstore.entities.TbsysPara">
+    <resultMap id="BaseResultMap" type="com.geoway.webstore.entity.TbsysPara">
         <result column="f_key" property="key" jdbcType="VARCHAR"/>
         <result column="f_value1" property="value" jdbcType="VARCHAR"/>
     </resultMap>

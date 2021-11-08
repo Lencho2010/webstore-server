@@ -1,7 +1,6 @@
 package com.geoway.webstore.service;
 
-import com.geoway.webstore.entities.TbsysPara;
-import org.apache.ibatis.annotations.Param;
+import com.geoway.webstore.entity.TbsysPara;
 
 /**
  * @author Lencho

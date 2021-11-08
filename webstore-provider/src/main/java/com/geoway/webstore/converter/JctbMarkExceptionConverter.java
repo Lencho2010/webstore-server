@@ -1,8 +1,6 @@
 package com.geoway.webstore.converter;
 
-import com.geoway.webstore.dto.JctbContrastDetailDto;
 import com.geoway.webstore.dto.JctbMarkExceptionDto;
-import com.geoway.webstore.entities.JctbContrastDetail;
 import com.geoway.webstore.entity.JctbMarkException;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

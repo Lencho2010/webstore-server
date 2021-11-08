@@ -1,6 +1,6 @@
 package com.geoway.webstore.dao;
 
-import com.geoway.webstore.entities.TbsysPara;
+import com.geoway.webstore.entity.TbsysPara;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

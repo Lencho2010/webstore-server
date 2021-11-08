@@ -2,7 +2,6 @@ package com.geoway.webstore.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.geoway.webstore.constant.Constant;
-import com.geoway.webstore.entities.JctbTaskDetail;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

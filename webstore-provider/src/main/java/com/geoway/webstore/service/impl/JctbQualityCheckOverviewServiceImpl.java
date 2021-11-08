@@ -1,12 +1,9 @@
 package com.geoway.webstore.service.impl;
 
 import com.geoway.webstore.converter.JctbQualityCheckOverviewConverter;
-import com.geoway.webstore.converter.JctbUnzipDetailConverter;
 import com.geoway.webstore.dao.JctbQualityCheckOverviewMapper;
 import com.geoway.webstore.dto.JctbQualityCheckOverviewDto;
-import com.geoway.webstore.dto.JctbUnzipDetailDto;
-import com.geoway.webstore.entities.JctbQualityCheckOverview;
-import com.geoway.webstore.entities.JctbUnzipDetail;
+import com.geoway.webstore.entity.JctbQualityCheckOverview;
 import com.geoway.webstore.service.JctbQualityCheckOverviewService;
 import com.geoway.webstore.util.IDWorker;
 import org.springframework.stereotype.Service;

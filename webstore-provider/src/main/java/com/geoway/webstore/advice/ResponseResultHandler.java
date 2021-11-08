@@ -1,17 +1,15 @@
 package com.geoway.webstore.advice;
 
 import com.alibaba.fastjson.JSON;
-import com.geoway.webstore.comm.Result;
 import com.geoway.webstore.anno.ResponseResult;
-import com.geoway.webstore.comm.ResultResponse;
 import com.geoway.webstore.util.HttpContextUtil;
+import com.geoway.webstore.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
@@ -36,12 +34,12 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if (body instanceof Result) {
+        if (body instanceof R) {
             return body;
         } else if (body instanceof String) {
-            return JSON.toJSONString(ResultResponse.success(body));
+            return JSON.toJSONString(R.ok().setData(body));
         } else {
-            return ResultResponse.success(body);
+            return R.ok().setData(body);
         }
     }
 }

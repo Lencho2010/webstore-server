@@ -3,7 +3,7 @@ package com.geoway.webstore.service.impl;
 import com.geoway.webstore.converter.JctbQualityCheckDetailConverter;
 import com.geoway.webstore.dao.JctbQualityCheckDetailMapper;
 import com.geoway.webstore.dto.JctbQualityCheckDetailDto;
-import com.geoway.webstore.entities.JctbQualityCheckDetail;
+import com.geoway.webstore.entity.JctbQualityCheckDetail;
 import com.geoway.webstore.service.JctbQualityCheckDetailService;
 import com.geoway.webstore.util.IDWorker;
 import org.springframework.stereotype.Service;

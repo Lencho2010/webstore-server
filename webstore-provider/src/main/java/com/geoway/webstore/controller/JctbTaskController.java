@@ -1,7 +1,7 @@
 package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
-import com.geoway.webstore.entities.JctbTask;
+import com.geoway.webstore.entity.JctbTask;
 import com.geoway.webstore.service.JctbTaskService;
 import com.geoway.webstore.util.ExportWordUtil;
 import com.github.pagehelper.PageInfo;

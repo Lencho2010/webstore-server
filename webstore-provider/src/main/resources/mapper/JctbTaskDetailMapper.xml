@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.geoway.webstore.dao.JctbTaskDetailMapper">
-    <resultMap id="BaseResultMap" type="com.geoway.webstore.entities.JctbTaskDetail">
+    <resultMap id="BaseResultMap" type="com.geoway.webstore.entity.JctbTaskDetail">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
         <result column="task_name" jdbcType="VARCHAR" property="taskName"/>
@@ -27,7 +27,7 @@
         from jctb_task_detail
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" parameterType="com.geoway.webstore.entities.JctbTaskDetail">
+    <insert id="insert" parameterType="com.geoway.webstore.entity.JctbTaskDetail">
         insert into jctb_task_detail (id, parent_id, task_name,
                                       status, log, start_time,
                                       end_time, step_code, step_info)
@@ -36,7 +36,7 @@
                 #{endTime,jdbcType=TIMESTAMP}, #{stepCode,jdbcType=INTEGER}), #{stepInfo,jdbcType=VARCHAR}
     </insert>
 
-    <insert id="batchInsert" parameterType="com.geoway.webstore.entities.JctbTaskDetail">
+    <insert id="batchInsert" parameterType="com.geoway.webstore.entity.JctbTaskDetail">
         insert into jctb_task_detail (id, parent_id, task_name,
         status, log, start_time,
         end_time, step_code, step_info)
@@ -48,7 +48,7 @@
         </foreach>
     </insert>
 
-    <insert id="insertSelective" parameterType="com.geoway.webstore.entities.JctbTaskDetail">
+    <insert id="insertSelective" parameterType="com.geoway.webstore.entity.JctbTaskDetail">
         insert into jctb_task_detail
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -109,7 +109,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.geoway.webstore.entities.JctbTaskDetail">
+    <update id="updateByPrimaryKeySelective" parameterType="com.geoway.webstore.entity.JctbTaskDetail">
         update jctb_task_detail
         <set>
             <if test="parentId != null">
@@ -139,7 +139,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.geoway.webstore.entities.JctbTaskDetail">
+    <update id="updateByPrimaryKey" parameterType="com.geoway.webstore.entity.JctbTaskDetail">
         update jctb_task_detail
         set parent_id  = #{parentId,jdbcType=BIGINT},
             task_name  = #{taskName,jdbcType=VARCHAR},

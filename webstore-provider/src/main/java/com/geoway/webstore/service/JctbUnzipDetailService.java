@@ -1,8 +1,7 @@
 package com.geoway.webstore.service;
 
 import com.geoway.webstore.dto.JctbUnzipDetailDto;
-import com.geoway.webstore.entities.JctbUnzipDetail;
-import org.apache.ibatis.annotations.Param;
+import com.geoway.webstore.entity.JctbUnzipDetail;
 
 import java.util.List;
 

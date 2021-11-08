@@ -2,6 +2,7 @@ package com.geoway.webstore;
 
 import com.geoway.webstore.util.IDWorker;
 import com.spring4all.swagger.EnableSwagger2Doc;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableAsync
 @SpringBootApplication
 @EnableSwagger2Doc
+@MapperScan(basePackages = {"com.geoway.webstore.dao"})
 public class LenApplication {
     public static void main(String[] args) {
         SpringApplication.run(LenApplication.class, args);

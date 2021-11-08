@@ -1,7 +1,7 @@
 package com.geoway.webstore.service;
 
 import com.geoway.webstore.dto.JctbTaskSubDto;
-import com.geoway.webstore.entities.JctbTaskSub;
+import com.geoway.webstore.entity.JctbTaskSub;
 
 import java.util.List;
 

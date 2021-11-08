@@ -1,4 +1,4 @@
-package com.geoway.webstore.entities;
+package com.geoway.webstore.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.geoway.webstore.constant.Constant;

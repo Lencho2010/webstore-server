@@ -181,7 +181,7 @@
         is_mark, mark_reason, step_code
     </sql>
 
-    <insert id="batchInsert" parameterType="com.geoway.webstore.entities.JctbQualityCheckFail">
+    <insert id="batchInsert" parameterType="com.geoway.webstore.entity.JctbQualityCheckFail">
         insert into jctb_mark_exception (id,task_name, province_code, province_name, city_code, city_name,
         county_code, county_name, jcbh, error_type, error_desc,
         is_mark, mark_reason, step_code)

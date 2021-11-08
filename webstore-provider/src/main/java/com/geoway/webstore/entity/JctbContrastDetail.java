@@ -1,4 +1,4 @@
-package com.geoway.webstore.entities;
+package com.geoway.webstore.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

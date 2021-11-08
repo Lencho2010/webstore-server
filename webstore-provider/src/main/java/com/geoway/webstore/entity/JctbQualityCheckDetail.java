@@ -1,11 +1,11 @@
-package com.geoway.webstore.entities;
+package com.geoway.webstore.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class JctbQualityCheckOverview {
+public class JctbQualityCheckDetail {
     private Long id;
 
     private String taskName;
@@ -22,8 +22,14 @@ public class JctbQualityCheckOverview {
 
     private String countyName;
 
-    private Short status;
+    private String ruleCode;
 
-    private String info;
+    private String ruleName;
+
+    private Short checkResult;
+
+    private String checkInfo;
+
+    private String finalResult;
 
 }

@@ -2,7 +2,7 @@ package com.geoway.webstore.service.impl;
 
 import com.geoway.webstore.converter.JctbContrastDetailConverter;
 import com.geoway.webstore.dto.JctbContrastDetailDto;
-import com.geoway.webstore.entities.JctbContrastDetail;
+import com.geoway.webstore.entity.JctbContrastDetail;
 import com.geoway.webstore.dao.JctbContrastDetailDao;
 import com.geoway.webstore.service.JctbContrastDetailService;
 import com.geoway.webstore.util.IDWorker;

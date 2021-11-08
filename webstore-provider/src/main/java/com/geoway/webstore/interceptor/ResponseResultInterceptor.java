@@ -19,7 +19,7 @@ public class ResponseResultInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("-------------preHandle---------------");
+//        System.out.println("-------------preHandle---------------");
         //请求方法
         if (handler instanceof HandlerMethod) {
             final HandlerMethod handlerMethod = (HandlerMethod) handler;

@@ -3,7 +3,7 @@ package com.geoway.webstore.service.impl;
 import com.geoway.webstore.converter.JctbTaskConverter;
 import com.geoway.webstore.dao.JctbTaskMapper;
 import com.geoway.webstore.dto.JctbTaskDto;
-import com.geoway.webstore.entities.JctbTask;
+import com.geoway.webstore.entity.JctbTask;
 import com.geoway.webstore.service.JctbTaskService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

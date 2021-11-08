@@ -1,7 +1,7 @@
 package com.geoway.webstore.service.impl;
 
 import com.geoway.webstore.dao.TbsysParaDao;
-import com.geoway.webstore.entities.TbsysPara;
+import com.geoway.webstore.entity.TbsysPara;
 import com.geoway.webstore.service.TbsysParaService;
 import org.springframework.stereotype.Service;
 

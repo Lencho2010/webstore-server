@@ -1,7 +1,6 @@
 package com.geoway.webstore.dao;
 
-import com.geoway.webstore.entities.JctbQualityCheckDetail;
-import com.geoway.webstore.entities.JctbQualityCheckFail;
+import com.geoway.webstore.entity.JctbQualityCheckDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

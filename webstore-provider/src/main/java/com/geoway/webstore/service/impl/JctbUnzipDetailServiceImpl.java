@@ -3,7 +3,7 @@ package com.geoway.webstore.service.impl;
 import com.geoway.webstore.converter.JctbUnzipDetailConverter;
 import com.geoway.webstore.dao.JctbUnzipDetailMapper;
 import com.geoway.webstore.dto.JctbUnzipDetailDto;
-import com.geoway.webstore.entities.JctbUnzipDetail;
+import com.geoway.webstore.entity.JctbUnzipDetail;
 import com.geoway.webstore.service.JctbUnzipDetailService;
 import com.geoway.webstore.util.IDWorker;
 import org.springframework.stereotype.Service;

@@ -1,16 +1,13 @@
 package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
-import com.geoway.webstore.converter.JctbQualityCheckOverviewConverter;
 import com.geoway.webstore.dto.JctbQualityCheckOverviewDto;
-import com.geoway.webstore.entities.JctbQualityCheckOverview;
-import com.geoway.webstore.entities.JctbUnzipDetail;
+import com.geoway.webstore.entity.JctbQualityCheckOverview;
 import com.geoway.webstore.service.JctbQualityCheckOverviewService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.stream.IntStream;
 
 /**
  * @Author: Lencho

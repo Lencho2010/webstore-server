@@ -1,7 +1,7 @@
 package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
-import com.geoway.webstore.entities.JctbTaskDetail;
+import com.geoway.webstore.entity.JctbTaskDetail;
 import com.geoway.webstore.service.JctbTaskDetailService;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,6 +1,5 @@
 package com.geoway.webstore.dao;
 
-import com.geoway.webstore.entities.JctbContrastDetail;
 import com.geoway.webstore.entity.JctbMarkException;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

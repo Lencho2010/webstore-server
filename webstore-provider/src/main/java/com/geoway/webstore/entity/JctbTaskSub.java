@@ -1,4 +1,4 @@
-package com.geoway.webstore.entities;
+package com.geoway.webstore.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.geoway.webstore.constant.Constant;
@@ -6,19 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
-@Data
 @NoArgsConstructor
-public class JctbTaskDetail {
+@Data
+public class JctbTaskSub {
     private Long id;
-
-    private Long parentId;
 
     private String taskName;
 
     private Short status;
 
-    private String log;
+    private Short progress;
 
     @JsonFormat(pattern= Constant.DATE_FORMAT, timezone = Constant.TIME_ZONE)
     private Date startTime;
@@ -28,6 +27,5 @@ public class JctbTaskDetail {
 
     private Integer stepCode;
 
-    private String stepInfo;
-
+    private String stepName;
 }

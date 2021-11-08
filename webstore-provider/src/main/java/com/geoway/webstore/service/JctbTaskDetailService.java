@@ -1,8 +1,6 @@
 package com.geoway.webstore.service;
 
-import com.geoway.webstore.entities.JctbTaskDetail;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.geoway.webstore.entity.JctbTaskDetail;
 
 import java.util.List;
 

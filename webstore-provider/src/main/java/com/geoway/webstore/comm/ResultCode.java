@@ -1,9 +1,7 @@
 package com.geoway.webstore.comm;
 
-import com.geoway.webstore.util.R;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.http.HttpStatus;
 

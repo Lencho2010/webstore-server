@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.geoway.webstore.dao.JctbQualityCheckDetailMapper">
-    <resultMap id="BaseResultMap" type="com.geoway.webstore.entities.JctbQualityCheckDetail">
+    <resultMap id="BaseResultMap" type="com.geoway.webstore.entity.JctbQualityCheckDetail">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="task_name" jdbcType="VARCHAR" property="taskName"/>
         <result column="province_code" jdbcType="VARCHAR" property="provinceCode"/>
@@ -32,7 +32,7 @@
         from jctb_quality_check_detail
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" parameterType="com.geoway.webstore.entities.JctbQualityCheckDetail">
+    <insert id="insert" parameterType="com.geoway.webstore.entity.JctbQualityCheckDetail">
         insert into jctb_quality_check_detail (id, task_name, province_code,
                                                province_name, city_code, city_name,
                                                county_code, county_name, rule_code,
@@ -44,7 +44,7 @@
                 #{ruleName,jdbcType=VARCHAR}, #{checkResult,jdbcType=SMALLINT}, #{checkInfo,jdbcType=VARCHAR},
                 #{finalResult,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.geoway.webstore.entities.JctbQualityCheckDetail">
+    <insert id="insertSelective" parameterType="com.geoway.webstore.entity.JctbQualityCheckDetail">
         insert into jctb_quality_check_detail
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -129,7 +129,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.geoway.webstore.entities.JctbQualityCheckDetail">
+    <update id="updateByPrimaryKeySelective" parameterType="com.geoway.webstore.entity.JctbQualityCheckDetail">
         update jctb_quality_check_detail
         <set>
             <if test="taskName != null">
@@ -171,7 +171,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.geoway.webstore.entities.JctbQualityCheckDetail">
+    <update id="updateByPrimaryKey" parameterType="com.geoway.webstore.entity.JctbQualityCheckDetail">
         update jctb_quality_check_detail
         set task_name     = #{taskName,jdbcType=VARCHAR},
             province_code = #{provinceCode,jdbcType=VARCHAR},
@@ -188,7 +188,7 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
 
-    <insert id="batchInsert" parameterType="com.geoway.webstore.entities.JctbQualityCheckFail">
+    <insert id="batchInsert" parameterType="com.geoway.webstore.entity.JctbQualityCheckFail">
         insert into jctb_quality_check_detail (id, task_name, province_code,
         province_name, city_code, city_name,
         county_code, county_name, rule_code,

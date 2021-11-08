@@ -2,7 +2,7 @@ package com.geoway.webstore.controller;
 
 import com.geoway.webstore.anno.ResponseResult;
 import com.geoway.webstore.dto.JctbQualityCheckDetailDto;
-import com.geoway.webstore.entities.JctbQualityCheckDetail;
+import com.geoway.webstore.entity.JctbQualityCheckDetail;
 import com.geoway.webstore.service.JctbQualityCheckDetailService;
 import org.springframework.web.bind.annotation.*;
 

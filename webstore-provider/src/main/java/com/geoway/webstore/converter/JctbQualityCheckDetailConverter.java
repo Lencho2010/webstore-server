@@ -1,7 +1,7 @@
 package com.geoway.webstore.converter;
 
 import com.geoway.webstore.dto.JctbQualityCheckDetailDto;
-import com.geoway.webstore.entities.JctbQualityCheckDetail;
+import com.geoway.webstore.entity.JctbQualityCheckDetail;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
