@@ -20,6 +20,6 @@ public class CustomerExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Result Exception(Exception e) {
         log.error("未知异常！", e);
-        return ResultResponse.failure( ResultCode.BAD_REQUEST);
+        return ResultResponse.failure( ResultCode.error(e.getMessage()));
     }
 }

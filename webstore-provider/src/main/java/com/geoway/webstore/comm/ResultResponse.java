@@ -10,13 +10,13 @@ public class ResultResponse {
     // 只返回状态
     public static Result success() {
         return new Result()
-                .setResult(ResultCode.SUCCESS);
+                .setResult(ResultCode.SUCCESS());
     }
 
     // 成功返回数据
     public static Result success(Object data) {
         return new Result()
-                .setResult(ResultCode.SUCCESS, data);
+                .setResult(ResultCode.SUCCESS(), data);
 
 
     }
