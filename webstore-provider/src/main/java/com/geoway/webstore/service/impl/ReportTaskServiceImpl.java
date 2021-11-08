@@ -1,6 +1,7 @@
 package com.geoway.webstore.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.geoway.webstore.config.DataSourceConfig;
 import com.geoway.webstore.converter.JctbTaskConverter;
 import com.geoway.webstore.dto.JctbTaskDto;
 import com.geoway.webstore.entities.JctbTask;
@@ -58,7 +59,10 @@ public class ReportTaskServiceImpl implements ReportTaskService {
     private ReportTemplateService reportTemplateService;
 
     @Resource
-    private JdbcTemplate jdbcTemplate;
+    private DataSourceConfig dataSourceConfig;
+
+    /*@Resource
+    private JdbcTemplate jdbcTemplate;*/
 
     @Resource
     private RestTemplate restTemplate;
@@ -177,6 +181,7 @@ public class ReportTaskServiceImpl implements ReportTaskService {
             doExecuteExcel(task, excelDocs);
             task.setStatus(1);
             task.setEndTime(new Date());
+            task.setExportPath(this.gainOutDir(task));
             this.reportTaskDao.update(task);
         } catch (Exception ex) {
             task.setStatus(-1);
@@ -273,7 +278,7 @@ public class ReportTaskServiceImpl implements ReportTaskService {
         Map<String, Object> resultMap = new HashMap<>();
         configDetail.getSqlItem().forEach(item -> {
             String sql = item.getSql();
-            Map<String, Object> map = jdbcTemplate.queryForMap(sql);
+            Map<String, Object> map = dataSourceConfig.gainJdbcTemplate().queryForMap(sql);
             resultMap.put(item.getKey(), map);
         });
         return resultMap;
